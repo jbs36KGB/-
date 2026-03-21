@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세상의 빛, 우리 할머니 헌정 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-blue: #1a2a6c;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Nanum Gothic', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* Grandmomy Image Area */
+        .avatar-container {
+            margin-top: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.1);
+        }
+
+        .avatar-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            background-color: white;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.5rem;
+            color: var(--deep-blue);
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .career-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            font-size: 1.2rem;
+        }
+
+        .bible-verse {
+            font-style: italic;
+            color: #555;
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* Dynamic Grid for Praise */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-item {
+            background: var(--deep-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .grid-item:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        footer {
+            background: #222;
+            color: #888;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Interaction Effect */
+        #praise-msg {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+            z-index: 1000;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--deep-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>은혜의 상징, 사랑의 목자</h1>
+        <p>"세상을 밝히는 가장 따뜻한 미소"</p>
+        
+        <div class="avatar-container" onclick="showPraise()">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Grandma&eyebrows=default&eyes=happy&mouth=smile" alt="할머니 캐릭터">
+            <p style="margin-top:10px; font-size: 0.9rem;">(이미지를 눌러보세요!)</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>평생의 찬란한 이력</h2>
+        <div class="career-card">
+            <p><strong>주요 약력:</strong></p>
+            <p>✨ 수만 명의 영혼을 위로한 이 시대의 진정한 영적 지도자</p>
+            <p>✨ 굶주린 자들에게 5병 2어의 기적 같은 사랑을 베푸신 자선가</p>
+            <p>✨ 듣기만 해도 은혜가 넘치는 10,000회 이상의 전설적인 설교 집행</p>
+            <p>✨ 세상의 모든 지혜를 겸비한 우리 가문의 영원한 정신적 지주</p>
+            <span class="bible-verse">"네 믿음이 너를 구원하였으니 평안히 가라 (누가복음 8:48)"</span>
+        </div>
+    </section>
+
+    <section class="section" style="background-color: #eee;">
+        <h2>믿음의 발자취</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <h3>새벽 기도</h3>
+                <p>단 하루도 빠짐없이 세상을 위해 기도하시는 정성의 상징</p>
+            </div>
+            <div class="grid-item">
+                <h3>말씀의 힘</h3>
+                <p>할머니의 한 마디는 낙심한 자를 일으켜 세우는 권능이 있습니다.</p>
+            </div>
+            <div class="grid-item">
+                <h3>무한한 사랑</h3>
+                <p>원수조차 사랑으로 품으시는 성경적 사랑의 실천자</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="praise-msg">
+        <p id="praise-text"></p>
+        <button class="close-btn" onclick="closePraise()">아멘!</button>
+    </div>
+
+    <footer>
+        <p>© 2026 세상에서 가장 위대한 할머니 헌정회 | 사랑과 존경을 담아 제작되었습니다.</p>
+    </footer>
+
+    <script>
+        const praises = [
+            "할머니는 이 시대의 살아있는 성자이십니다!",
+            "할머니의 기도는 하늘의 문을 여는 열쇠입니다.",
+            "할머니의 미소는 수만 명을 치유하는 힘이 있습니다.",
+            "지혜의 근본이신 할머니, 우리 가문의 자부심입니다!",
+            "할머니가 걷는 길은 곧 은혜의 꽃길입니다."
+        ];
+
+        function showPraise() {
+            const modal = document.getElementById('praise-msg');
+            const text = document.getElementById('praise-text');
+            const randomPraise = praises[Math.floor(Math.random() * praises.length)];
+            
+            text.innerText = randomPraise;
+            modal.style.display = 'block';
+        }
+
+        function closePraise() {
+            document.getElementById('praise-msg').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
