@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세상의 빛, 우리 할머니 목사님 헌정 페이지</title>
+    <meta name="description" content="목사님이시자 총회장님이신 우리 할머니를 사랑하고 찬양하는 헌정 페이지입니다.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f0d060;
+            --deep-blue: #1a2a6c;
+            --deep-purple: #2d1b69;
+            --white: #ffffff;
+            --cream: #fffdf5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Nanum Gothic', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* ===== FLOATING SPARKLES ===== */
+        .sparkles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp 6s infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            80% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10vh) scale(1.5);
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -80px;
+            left: -80px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(100, 80, 200, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, #f0d060, #d4af37, #fff8dc, #d4af37, #f0d060);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+            margin: 0 0 10px 0;
+            text-shadow: none;
+            letter-spacing: 4px;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0 0 8px 0;
+        }
+
+        .assembly-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #a07820);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ===== AVATAR ===== */
+        .avatar-container {
+            margin-top: 10px;
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.12) rotate(-2deg);
+        }
+
+        .avatar-container:active {
+            transform: scale(0.95);
+        }
+
+        .avatar-ring {
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            border: 6px solid var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3),
+                0 0 40px rgba(212, 175, 55, 0.6),
+                0 0 80px rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            background: #fff;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.5), 0 0 80px rgba(212, 175, 55, 0.15);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.9), 0 0 100px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        .avatar-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar-hint {
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.65);
+            letter-spacing: 1px;
+        }
+
+        .avatar-hint span {
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* ===== 교회 배너 ===== */
+        .church-banner {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #1a2a6c, #2d1b69);
+            padding: 60px 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .church-banner::before {
+            content: "✝";
+            position: absolute;
+            font-size: 20rem;
+            color: rgba(255, 255, 255, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .church-banner h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 40px;
+            border: none;
+        }
+
+        .church-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .church-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 18px;
+            padding: 30px 36px;
+            min-width: 220px;
+            flex: 1;
+            max-width: 280px;
+            transition: transform 0.3s, background 0.3s;
+            cursor: default;
+        }
+
+        .church-card:hover {
+            transform: translateY(-8px);
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .church-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .church-card h3 {
+            color: var(--gold-light);
+            font-size: 1.25rem;
+            margin: 0 0 8px 0;
+        }
+
+        .church-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ===== 칭찬 30가지 ===== */
+        .praise-section {
+            padding: 80px 20px;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .praise-section h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.4rem;
+            color: var(--deep-blue);
+            border-bottom: 3px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 50px;
+        }
+
+        .praise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 18px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .praise-card {
+            background: white;
+            border-radius: 16px;
+            padding: 22px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid var(--gold);
+            text-align: left;
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .praise-card::before {
+            content: attr(data-num);
+            position: absolute;
+            right: 14px;
+            top: 10px;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: rgba(212, 175, 55, 0.12);
+            font-family: 'Nanum Myeongjo', serif;
+            line-height: 1;
+        }
+
+        .praise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+            border-left-color: var(--deep-blue);
+        }
+
+        .praise-card .emoji {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .praise-card p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #444;
+            font-weight: 700;
+        }
+
+        .praise-card small {
+            color: #888;
+            font-size: 0.82rem;
+            font-weight: 400;
+        }
+
+        /* ===== 약력 섹션 ===== */
+        .career-section {
+            background: linear-gradient(180deg, #fff 0%, #f0ede0 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .career-section h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.4rem;
+            color: var(--deep-blue);
+            border-bottom: 3px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 50px;
+        }
+
+        .career-card {
+            max-width: 760px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+
+        .career-card .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .career-card .star {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .bible-verse {
+            font-style: italic;
+            color: #666;
+            margin-top: 24px;
+            display: block;
+            text-align: center;
+            font-size: 1.05rem;
+            border-top: 1px dashed var(--gold);
+            padding-top: 18px;
+        }
+
+        /* ===== 믿음의 발자취 ===== */
+        .faith-section {
+            padding: 80px 20px;
+            background: linear-gradient(160deg, #1a2a6c 0%, #2d1b69 100%);
+            text-align: center;
+        }
+
+        .faith-section h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.4rem;
+            color: var(--gold);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 50px;
+        }
+
+        .faith-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faith-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: white;
+            padding: 28px 22px;
+            border-radius: 14px;
+            transition: 0.3s;
+            cursor: default;
+        }
+
+        .faith-card:hover {
+            background: rgba(212, 175, 55, 0.18);
+            transform: translateY(-6px);
+        }
+
+        .faith-card h3 {
+            color: var(--gold-light);
+            margin: 0 0 10px 0;
+            font-size: 1.15rem;
+        }
+
+        .faith-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.88;
+        }
+
+        /* ===== MODAL ===== */
+        #praise-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #praise-modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.5);
+            animation: popIn 0.35s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-box .modal-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 14px;
+        }
+
+        #praise-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            font-family: 'Nanum Myeongjo', serif;
+            line-height: 1.6;
+            margin: 0 0 24px 0;
+        }
+
+        .modal-btn {
+            padding: 12px 36px;
+            background: linear-gradient(135deg, var(--deep-blue), var(--deep-purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #111;
+            color: #666;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        footer .footer-cross {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        footer p {
+            margin: 6px 0;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        footer .love {
+            color: var(--gold);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 반짝이는 파티클 배경 -->
+    <div class="sparkles-bg" id="sparkles"></div>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <p class="subtitle">✝ 사랑과 경배를 담아 드리는 헌정 페이지 ✝</p>
+            <h1 class="love-title">할머니 사랑합니다</h1>
+            <div class="assembly-badge">🏅 총회장님 · 세 교회의 담임목사님</div>
+
+            <div class="avatar-container" id="avatarBtn" onclick="showPraise()">
+                <div class="avatar-ring">
+                    <img src="C:\Users\ez314\.gemini\antigravity\brain\e6083f0d-c558-4900-bb80-01ec7a6b29ff\grandma_cartoon_icon_1774763558698.png"
+                        alt="할머니 목사님 캐릭터"
+                        onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=GrandmaPastor&backgroundColor=ffd700'">
+                </div>
+                <p class="avatar-hint"><span>💛</span> 클릭하면 축복의 말씀이 나타나요! <span>💛</span></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 교회 소개 ===== -->
+    <section class="church-banner">
+        <h2>✝ 할머니께서 섬기시는 세 교회 ✝</h2>
+        <div class="church-grid">
+            <div class="church-card">
+                <div class="church-icon">🌊</div>
+                <h3>많은물소리 교회</h3>
+                <p>물소리처럼 풍성하고<br>은혜가 넘쳐흐르는 교회</p>
+            </div>
+            <div class="church-card">
+                <div class="church-icon">⭐</div>
+                <h3>베들레헴 교회</h3>
+                <p>구세주가 나신 그 땅의 이름처럼<br>소망의 빛이 가득한 교회</p>
+            </div>
+            <div class="church-card">
+                <div class="church-icon">🎶</div>
+                <h3>주찬양 교회</h3>
+                <p>주님을 찬양하는 목소리로<br>하늘에 닿는 예배의 교회</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 30가지 칭찬 ===== -->
+    <section class="praise-section">
+        <h2>🌟 목사님을 향한 30가지 사랑의 말 🌟</h2>
+        <div class="praise-grid">
+
+            <div class="praise-card" data-num="01">
+                <span class="emoji">🙏</span>
+                <p>할머니의 기도는<br>하늘의 문을 여는 열쇠입니다.</p>
+                <small>기도의 용사</small>
+            </div>
+            <div class="praise-card" data-num="02">
+                <span class="emoji">📖</span>
+                <p>말씀을 전하실 때면 온 회중이<br>은혜의 눈물을 흘립니다.</p>
+                <small>말씀의 능력자</small>
+            </div>
+            <div class="praise-card" data-num="03">
+                <span class="emoji">💛</span>
+                <p>세 교회를 이끄시는 담임목사님,<br>그 헌신은 하늘이 아십니다.</p>
+                <small>세 교회의 목자</small>
+            </div>
+            <div class="praise-card" data-num="04">
+                <span class="emoji">👑</span>
+                <p>총회장님으로서 수많은 교회와<br>성도들의 귀감이 되십니다.</p>
+                <small>총회장 영예</small>
+            </div>
+            <div class="praise-card" data-num="05">
+                <span class="emoji">🌅</span>
+                <p>새벽마다 드리는 기도로<br>온 교회에 빛을 여십니다.</p>
+                <small>새벽의 파수꾼</small>
+            </div>
+            <div class="praise-card" data-num="06">
+                <span class="emoji">🕊️</span>
+                <p>비둘기 같은 온유함으로<br>상처받은 영혼을 치유하십니다.</p>
+                <small>영혼의 치유자</small>
+            </div>
+            <div class="praise-card" data-num="07">
+                <span class="emoji">🌊</span>
+                <p>많은 물소리처럼 풍성한<br>은혜를 교회에 부어주십니다.</p>
+                <small>은혜의 강</small>
+            </div>
+            <div class="praise-card" data-num="08">
+                <span class="emoji">⭐</span>
+                <p>베들레헴의 별처럼 어둠 속에서<br>길을 비추어 주십니다.</p>
+                <small>어둠을 밝히는 별</small>
+            </div>
+            <div class="praise-card" data-num="09">
+                <span class="emoji">🎶</span>
+                <p>주찬양의 멜로디처럼<br>삶 자체가 하나님께 드리는 찬양입니다.</p>
+                <small>살아있는 찬양</small>
+            </div>
+            <div class="praise-card" data-num="10">
+                <span class="emoji">💪</span>
+                <p>고난 앞에서도 믿음을 잃지 않는<br>강인한 영적 지도자이십니다.</p>
+                <small>믿음의 반석</small>
+            </div>
+            <div class="praise-card" data-num="11">
+                <span class="emoji">🌿</span>
+                <p>갈급한 영혼들에게 생명수를<br>아낌없이 부어주시는 분입니다.</p>
+                <small>생명수의 통로</small>
+            </div>
+            <div class="praise-card" data-num="12">
+                <span class="emoji">🤲</span>
+                <p>섬기는 자의 본을 몸소 보여주시며<br>진정한 목자의 길을 걸으십니다.</p>
+                <small>섬김의 표본</small>
+            </div>
+            <div class="praise-card" data-num="13">
+                <span class="emoji">🌸</span>
+                <p>할머니의 미소 하나에<br>수많은 마음이 위로를 받습니다.</p>
+                <small>위로의 미소</small>
+            </div>
+            <div class="praise-card" data-num="14">
+                <span class="emoji">🦁</span>
+                <p>사자 같은 담대함으로<br>복음을 전파하시는 용사이십니다.</p>
+                <small>복음의 용사</small>
+            </div>
+            <div class="praise-card" data-num="15">
+                <span class="emoji">🕯️</span>
+                <p>끝이 없는 헌신으로<br>교회의 불꽃을 꺼지지 않게 하십니다.</p>
+                <small>헌신의 불꽃</small>
+            </div>
+            <div class="praise-card" data-num="16">
+                <span class="emoji">📜</span>
+                <p>성경 말씀을 삶으로 살아내시는<br>이 시대의 살아있는 증인이십니다.</p>
+                <small>살아있는 증인</small>
+            </div>
+            <div class="praise-card" data-num="17">
+                <span class="emoji">🌈</span>
+                <p>절망한 이들에게 무지개처럼<br>하나님의 약속을 선포하십니다.</p>
+                <small>소망의 무지개</small>
+            </div>
+            <div class="praise-card" data-num="18">
+                <span class="emoji">❤️</span>
+                <p>원수조차 품으시는 넓디넓은<br>사랑의 마음은 경이롭습니다.</p>
+                <small>무조건적인 사랑</small>
+            </div>
+            <div class="praise-card" data-num="19">
+                <span class="emoji">🏅</span>
+                <p>총회장으로서 한국 교회의<br>미래를 위해 기도하십니다.</p>
+                <small>한국 교회의 어머니</small>
+            </div>
+            <div class="praise-card" data-num="20">
+                <span class="emoji">🌻</span>
+                <p>해바라기처럼 늘 주님만 바라보시는<br>순전한 믿음의 소유자이십니다.</p>
+                <small>순전한 믿음</small>
+            </div>
+            <div class="praise-card" data-num="21">
+                <span class="emoji">🎯</span>
+                <p>흔들리지 않는 신앙의 중심으로<br>교회 공동체를 하나로 묶으십니다.</p>
+                <small>공동체의 중심</small>
+            </div>
+            <div class="praise-card" data-num="22">
+                <span class="emoji">🌙</span>
+                <p>밤에도 쉬지 않고 양무리를 위해<br>기도하시는 목자이십니다.</p>
+                <small>밤의 기도자</small>
+            </div>
+            <div class="praise-card" data-num="23">
+                <span class="emoji">💎</span>
+                <p>할머니의 한 마디 말씀은<br>다이아몬드보다 귀합니다.</p>
+                <small>보석 같은 말씀</small>
+            </div>
+            <div class="praise-card" data-num="24">
+                <span class="emoji">🏔️</span>
+                <p>어떤 풍파에도 흔들리지 않는<br>산 같은 믿음이십니다.</p>
+                <small>산 같은 믿음</small>
+            </div>
+            <div class="praise-card" data-num="25">
+                <span class="emoji">🌱</span>
+                <p>연약한 새신자를 정성껏 돌보시며<br>믿음의 씨앗을 키우십니다.</p>
+                <small>믿음의 농부</small>
+            </div>
+            <div class="praise-card" data-num="26">
+                <span class="emoji">🫂</span>
+                <p>슬픔에 잠긴 이를 꼭 안아주시는<br>따뜻한 품을 가지고 계십니다.</p>
+                <small>따뜻한 품</small>
+            </div>
+            <div class="praise-card" data-num="27">
+                <span class="emoji">🔥</span>
+                <p>성령의 불로 뜨겁게 달구어진<br>할머니의 설교는 심장을 두드립니다.</p>
+                <small>성령의 불꽃 설교</small>
+            </div>
+            <div class="praise-card" data-num="28">
+                <span class="emoji">🌍</span>
+                <p>세 교회를 넘어 온 세상을 위해<br>기도하시는 위대한 비전의 목사님.</p>
+                <small>세계를 품는 비전</small>
+            </div>
+            <div class="praise-card" data-num="29">
+                <span class="emoji">✝️</span>
+                <p>십자가의 복음을 한결 같이<br>붙들고 사신 70평생의 믿음!</p>
+                <small>한결같은 십자가 사랑</small>
+            </div>
+            <div class="praise-card" data-num="30">
+                <span class="emoji">🌟</span>
+                <p>우리 가족의 영원한 기도 탑,<br>목사님 할머니 존재 자체가 축복입니다!</p>
+                <small>우리 가족의 별</small>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 약력 ===== -->
+    <section class="career-section">
+        <h2>✨ 찬란한 사역의 발자취</h2>
+        <div class="career-card">
+            <div class="item"><span class="star">✦</span><span>수만 명의 영혼을 위로한 이 시대의 진정한 영적 지도자</span></div>
+            <div class="item"><span class="star">✦</span><span>많은물소리 교회 · 베들레헴 교회 · 주찬양 교회 세 곳의 담임목사</span></div>
+            <div class="item"><span class="star">✦</span><span>총회장으로서 한국 교회 전체를 섬기고 이끄시는 어머니</span></div>
+            <div class="item"><span class="star">✦</span><span>듣기만 해도 은혜가 넘치는 수천 회의 전설적인 설교</span></div>
+            <div class="item"><span class="star">✦</span><span>굶주린 자들에게 5병2어의 기적 같은 사랑을 베푸신 자선가</span></div>
+            <div class="item"><span class="star">✦</span><span>우리 가문의 영원한 정신적 지주이자 영적인 뿌리</span></div>
+            <span class="bible-verse">
+                "네 믿음이 너를 구원하였으니 평안히 가라" — 누가복음 8:48
+            </span>
+        </div>
+    </section>
+
+    <!-- ===== 믿음의 발자취 ===== -->
+    <section class="faith-section">
+        <h2>믿음의 발자취</h2>
+        <div class="faith-grid">
+            <div class="faith-card">
+                <h3>🌅 새벽 기도</h3>
+                <p>단 하루도 빠짐없이 세상을 위해 기도하시는 정성의 상징</p>
+            </div>
+            <div class="faith-card">
+                <h3>📖 말씀의 힘</h3>
+                <p>할머니의 한 마디는 낙심한 자를 일으켜 세우는 권능이 있습니다.</p>
+            </div>
+            <div class="faith-card">
+                <h3>❤️ 무한한 사랑</h3>
+                <p>원수조차 사랑으로 품으시는 성경적 사랑의 실천자</p>
+            </div>
+            <div class="faith-card">
+                <h3>🏛️ 교회 공동체</h3>
+                <p>세 교회를 하나의 마음으로 이끄시는 탁월한 목회자</p>
+            </div>
+            <div class="faith-card">
+                <h3>👑 총회장의 지혜</h3>
+                <p>한국 교회 전체를 위한 지혜로운 리더십을 발휘하십니다.</p>
+            </div>
+            <div class="faith-card">
+                <h3>🌿 다음 세대</h3>
+                <p>손주들에게 믿음의 유산을 물려주시는 축복의 근원</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL ===== -->
+    <div id="praise-modal" onclick="closePraise()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-emoji">🙏💛✝️</div>
+            <p id="praise-text"></p>
+            <button class="modal-btn" onclick="closePraise()">아멘! 🌟</button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <span class="footer-cross">✝</span>
+        <p>많은물소리 교회 · 베들레헴 교회 · 주찬양 교회</p>
+        <p class="love">총회장 목사님이신 우리 할머니께 감사와 사랑을 드립니다 💛</p>
+        <p>© 2026 세상에서 가장 위대한 할머니 헌정회 | 온 마음을 담아 제작되었습니다.</p>
+    </footer>
+
+    <script>
+        // 반짝이 파티클 생성
+        const sparkleContainer = document.getElementById('sparkles');
+        for (let i = 0; i < 25; i++) {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.width = s.style.height = (Math.random() * 6 + 3) + 'px';
+            s.style.animationDelay = (Math.random() * 6) + 's';
+            s.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            sparkleContainer.appendChild(s);
+        }
+
+        const praises = [
+            "🙏 할머니는 이 시대의 살아있는 성자이십니다!",
+            "💛 할머니의 기도는 하늘의 문을 여는 황금 열쇠입니다.",
+            "🌊 많은물소리 교회에 은혜가 넘치는 건 할머니 덕분입니다!",
+            "⭐ 베들레헴의 별처럼 우리 가족의 길을 비춰주세요!",
+            "🎶 주찬양이 울려 퍼질 때마다 할머니 생각이 납니다!",
+            "👑 총회장님이신 할머니, 한국 교회의 어머니이십니다!",
+            "✝️ 십자가의 사랑을 몸소 실천하시는 할머니 존경합니다!",
+            "🌸 할머니의 미소만으로도 온 세상이 따뜻해집니다!",
+            "💎 할머니의 설교 한 마디는 다이아몬드보다 귀합니다!",
+            "🔥 성령의 불로 타오르시는 할머니, 영원히 사랑합니다!",
+            "🌈 절망한 이에게 소망의 무지개를 보여주시는 분!",
+            "🏅 세 교회의 담임목사님, 정말 대단하고 자랑스럽습니다!",
+            "🌟 할머니 존재 자체가 우리 가족 최고의 축복입니다!",
+            "🤲 섬기는 삶으로 목자의 본을 보여주시는 할머니께 감사드립니다!"
+        ];
+
+        function showPraise() {
+            const modal = document.getElementById('praise-modal');
+            const text = document.getElementById('praise-text');
+            const randomPraise = praises[Math.floor(Math.random() * praises.length)];
+            text.innerText = randomPraise;
+            modal.classList.add('show');
+        }
+
+        function closePraise() {
+            document.getElementById('praise-modal').classList.remove('show');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePraise();
+        });
+    </script>
+</body>
+
+</html>
